@@ -1,13 +1,12 @@
 import streamlit as sl
 
 
+
+
+
+
 def main():
-    sl.title("maarten")
-
-
-
-
-
+    sl.title("Tim je bent een sukkel")
 
 
 
