@@ -2,9 +2,9 @@ absl-py==0.9.0
 alabaster==0.7.12
 altair==4.1.0
 altgraph==0.17
-anaconda-client==1.7.2
-anaconda-navigator==1.9.7
-anaconda-project==0.8.3
+#anaconda-client==1.7.2
+#anaconda-navigator==1.9.7
+#anaconda-project==0.8.3
 as==0.1
 asn1crypto==1.0.1
 astor==0.7.1
@@ -216,8 +216,8 @@ python-whois==0.7.2
 pytz==2019.3
 PyVirtualDisplay==0.2.5
 PyWavelets==1.0.3
-pywin32==223
-pywin32-ctypes==0.2.0
+#pywin32==223
+#pywin32-ctypes==0.2.0
 pywinpty==0.5.5
 PyYAML==5.1.2
 pyzmq==18.1.0
