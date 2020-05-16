@@ -4,17 +4,18 @@ import pandas as pd
 
 
 
-
-
 @sl.cache
 def Load_data(nrows, ticker):
 
-    df = pd.read_csv(r"https://query1.finance.yahoo.com/v7/finance/download/"+ticker+"?period1=488764800&period2=1589587200&interval=1d&events=history",nrows=nrows)
+    df = pd.read_csv(r"https://query1.finance.yahoo.com/v7/finance/download/"+ticker+"?period1=488764800&period2=1589587200&interval=1d&events=history",nrows=nrows, index_col=["Date"], parse_dates=["Date"])
 
     df = df.dropna()
 
     print(df.columns)
     return df
+
+
+
 
 
 def main():
