@@ -29,7 +29,7 @@ def main():
     sl.write()
 
     img = Image.open("stocks-market.jpg")
-    sl.image(img,width=850)
+    sl.image(img,width=350)
 
     if sl.sidebar.button("Click to analyze"):
 
