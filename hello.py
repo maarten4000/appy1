@@ -20,15 +20,16 @@ def Load_data(nrows, ticker):
 def main():
 
     # IN THE SIDEBAR
-    ticker =sl.sidebar.text_input("SELECT THE COMPANY TICKER")
+    ticker =sl.sidebar.text_input("Voeg company TICKER toe!!")
 
     sl.title("Stockdata analyzer")
     sl.markdown("""Predicting of stocks based on machine learning techniques, like SVR and stuff (Made by Maarten)
                 """)
 
+    sl.write()
 
-    img = Image.open("download.jpg")
-    sl.image(img,width=500)
+    img = Image.open("stocks-market.jpg")
+    sl.image(img,width=850)
 
     if sl.sidebar.button("Click to analyze"):
 
