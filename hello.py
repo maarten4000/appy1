@@ -7,8 +7,12 @@ import pandas as pd
 
 
 @sl.cache
-def Load_data(nrows):
-    df = pd.read_csv(r"C:\Users\maart\OneDrive\Bureaublad\Data\airline_passengers.csv",nrows=nrows,index_col=["Month"],parse_dates=["Month"])
+def Load_data(nrows, ticker):
+
+    df = pd.read_csv(r"https://query1.finance.yahoo.com/v7/finance/download/"+ticker+"?period1=488764800&period2=1589587200&interval=1d&events=history",nrows=nrows)
+
+    df = df.dropna()
+
     print(df.columns)
     return df
 
@@ -16,25 +20,29 @@ def Load_data(nrows):
 def main():
 
     # IN THE SIDEBAR
-    sl.sidebar.slider("Select the year",0,23,12)
-    sl.sidebar.button("Homee!!")
-    sl.title("Airline passengers")
-    sl.markdown("""Predicting of the airline passengers with Time series forecasting 
-                models we used are ARIMA and HOLT WINTER""")
+    ticker =sl.sidebar.text_input("SELECT THE COMPANY TICKER")
+
+    sl.title("Stockdata analyzer")
+    sl.markdown("""Predicting of stocks based on machine learning techniques, like SVR and stuff (Made by Maarten)
+                """)
 
 
     img = Image.open("download.jpg")
     sl.image(img,width=500)
 
-
-    df = Load_data(1000)
-    sl.write(df)
+    if sl.sidebar.button("Click to analyze"):
 
 
 
-    sl.line_chart(df["Thousands of Passengers"])
+        df = Load_data(1000000, ticker=ticker)
+        sl.write(df,width =1000)
 
-    sl.bar_chart(df["Thousands of Passengers"])
+
+        sl.line_chart(df[["Adj Close","Close"]])
+        sl.line_chart(df["Close"])
+
+
+
 
 if __name__ =="__main__":
     main()
