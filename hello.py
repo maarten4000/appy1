@@ -1,6 +1,9 @@
 import streamlit as sl
 from PIL import Image
 import pandas as pd
+import altair as alt
+import datetime
+import numpy as np
 
 
 
@@ -8,6 +11,8 @@ import pandas as pd
 def Load_data(nrows, ticker):
 
     df = pd.read_csv(r"https://query1.finance.yahoo.com/v7/finance/download/"+ticker+"?period1=488764800&period2=1589587200&interval=1d&events=history",nrows=nrows, index_col=["Date"], parse_dates=["Date"])
+    df["year"]= df.index
+
 
     df = df.dropna()
 
@@ -16,34 +21,66 @@ def Load_data(nrows, ticker):
 
 
 
-
-
 def main():
 
     # IN THE SIDEBAR
-    ticker =sl.sidebar.text_input("Voeg company TICKER toe!!")
+    ticker =sl.sidebar.text_input("Ticker:")
 
-    sl.title("Stockdata analyzer")
-    sl.markdown("""Predicting of stocks based on machine learning techniques, like SVR and stuff (Made by Maarten)
-                """)
 
-    sl.write()
+    sl.title("  "+"Stockdata analyzer")
 
-    img = Image.open("stocks-market.jpg")
-    sl.image(img,width=350)
-
-    if sl.sidebar.button("Click to analyze"):
+    sl.write("___________________________________________")
 
 
 
+
+    sl.markdown("""
+                    """)
+
+    sl.markdown("""
+                    """)
+    img = Image.open("machine-learning-840x485.png")
+    sl.image(img, width=650)
+
+
+
+
+    sl.markdown("""
+                    """)
+
+
+
+
+    sl.markdown("""
+                    """)
+    sl.markdown("""
+                       """)
+    sl.markdown("""
+                       """)
+
+    sl.write("Stap 1: Voeg een ticker toe")
+    sl.write("Stap 2: Zet de datum correct")
+
+    sl.write("___________________________________________")
+
+    sl.markdown("""
+                           """)
+    sl.markdown("""
+                           """)
+
+    input = sl.sidebar.date_input("Startdatum:", datetime.datetime.now())
+    output = sl.sidebar.date_input("Einddatum:", datetime.datetime.now())
+
+    if sl.sidebar.button("Oke!"):
         df = Load_data(1000000, ticker=ticker)
-        sl.write(df,width =1000)
+        df = df.loc[str(input):  str(output)]
+
 
 
         sl.line_chart(df[["Adj Close","Close"]])
-        sl.line_chart(df["Close"])
 
-
+        sl.write("___________________________________________")
+        sl.write(df, width=1000)
 
 
 if __name__ =="__main__":
